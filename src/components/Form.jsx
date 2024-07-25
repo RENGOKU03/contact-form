@@ -1,25 +1,43 @@
 import { MdOutlineMarkUnreadChatAlt } from "react-icons/md";
 import { IoMdCall } from "react-icons/io";
 import { useRef, useState } from "react";
+import { IoIosCloseCircle } from "react-icons/io";
 
 const Form = () => {
   const [form, setForm] = useState({});
+
   const username = useRef("");
   const email = useRef("");
   const textarea = useRef("");
+  const dialog = useRef(null);
+
   const onClickHandel = (e) => {
     e.preventDefault();
-    const newForm = {
-      username: username.current.value,
-      email: email.current.value,
-      textarea: textarea.current.value,
-    };
-    setForm(newForm);
-    username.current.value = "";
-    email.current.value = "";
-    textarea.current.value = "";
+    if (
+      username.current.value &&
+      email.current.value &&
+      textarea.current.value
+    ) {
+      const newForm = {
+        username: username.current.value.trim(),
+        email: email.current.value.trim(),
+        textarea: textarea.current.value.trim(),
+      };
+      setForm(newForm);
+      username.current.value = "";
+      email.current.value = "";
+      textarea.current.value = "";
+      if (dialog.current) {
+        dialog.current.classList.toggle("hidden", false);
+        dialog.current.classList.toggle("flex", true);
+      }
+    }
   };
-  console.log(form.length);
+
+  const handelOnClose = () => {
+    dialog.current.classList.add("hidden");
+  };
+
   return (
     <div className="mt-10 w-[50%] ">
       <div className="flex gap-10">
@@ -87,14 +105,18 @@ const Form = () => {
       >
         SUBMIT
       </button>
-      {form.username && form.email && form.textarea && (
-        <div className="bg-gray-300 p-2 rounded-2xl mt-2">
-          <p>
-            Hi {form.username} you have entered email {form.email} and the query
-            is {form.textarea}
-          </p>
-        </div>
-      )}
+      <div
+        className="bg-[#7eabf9] p-2 rounded-2xl mt-2 absolute top-1/3 left-1/2 transform -translate-x-1/3 translate-y-1/2 h-20 w-2/5 gap-10 hidden"
+        ref={dialog}
+      >
+        <p className="w-full">
+          Hi {form.username} you have entered email {form.email} and the query
+          is {form.textarea}
+        </p>
+        <button className="h-4 w-1/12" onClick={handelOnClose}>
+          <IoIosCloseCircle size={"25px"} />
+        </button>
+      </div>
     </div>
   );
 };

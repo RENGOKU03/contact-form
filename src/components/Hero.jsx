@@ -2,7 +2,7 @@ import Form from "./Form";
 
 const Hero = () => {
   return (
-    <div className="mt-4 mx-[20%] h-[100vh-80px]">
+    <div className="mt-4 mx-[20%] ">
       <div>
         <h1 className="text-5xl font-extrabold  ">CONTACT US</h1>
         <p>
@@ -12,7 +12,7 @@ const Hero = () => {
           EMAIL, OR SOCIAL MEDIA.
         </p>
       </div>
-      <div className="flex">
+      <div className="flex h-height">
         <Form />
         <img className="w-[70%]" src="images/hero.svg" alt="" />
       </div>

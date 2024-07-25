@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 function App() {
   return (
     <>
-      <div className="max-h-screen">
+      <div className="h-screen">
         <Navbar></Navbar>
         <Hero></Hero>
       </div>

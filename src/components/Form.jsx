@@ -11,7 +11,7 @@ const Form = () => {
   const textarea = useRef("");
   const dialog = useRef(null);
 
-  const onClickHandel = (e) => {
+  const handelOnSubmit = (e) => {
     e.preventDefault();
     if (
       username.current.value &&
@@ -54,57 +54,58 @@ const Form = () => {
         <MdOutlineMarkUnreadChatAlt className="my-auto" />
         <span className="my-auto">VIA EMAIL FORM</span>
       </button>
-      <div className="my-5 border-2 relative border-gray-700 h-10 rounded-md">
-        <label
-          className="text-sm font-normal absolute bg-white top-[-11px] left-4"
-          htmlFor="name"
+      <form onSubmit={handelOnSubmit}>
+        <div className="my-5 border-2 relative border-gray-700 h-10 rounded-md">
+          <label
+            className="text-sm font-normal absolute bg-white top-[-11px] left-4"
+            htmlFor="name"
+          >
+            Name
+          </label>
+          <input
+            className="w-full h-full rounded-md outline-none p-4"
+            type="text"
+            id="name"
+            ref={username}
+            required
+          />
+        </div>
+        <div className="my-5 border-2 relative border-gray-700 h-10 rounded-md">
+          <label
+            className="text-sm font-normal absolute bg-white top-[-11px] left-4"
+            htmlFor="email"
+          >
+            Email
+          </label>
+          <input
+            className="w-full h-full rounded-md outline-none p-4"
+            type="email"
+            id="email"
+            ref={email}
+            required
+          />
+        </div>
+        <div className="my-5 border-2 relative border-gray-700 h-44 rounded-md">
+          <label
+            className="text-sm font-normal absolute bg-white top-[-11px] left-4"
+            htmlFor="text"
+          >
+            Text
+          </label>
+          <textarea
+            className="w-full h-full rounded-md outline-none resize-none   p-4"
+            id="text"
+            ref={textarea}
+            required
+          ></textarea>
+        </div>
+        <button
+          className="w-48 bg-black rounded-md text-white h-9 "
+          type="submit"
         >
-          Name
-        </label>
-        <input
-          className="w-full h-full rounded-md outline-none p-4"
-          type="text"
-          id="name"
-          ref={username}
-          required
-        />
-      </div>
-      <div className="my-5 border-2 relative border-gray-700 h-10 rounded-md">
-        <label
-          className="text-sm font-normal absolute bg-white top-[-11px] left-4"
-          htmlFor="email"
-        >
-          Email
-        </label>
-        <input
-          className="w-full h-full rounded-md outline-none p-4"
-          type="email"
-          id="email"
-          ref={email}
-          required
-        />
-      </div>
-      <div className="my-5 border-2 relative border-gray-700 h-44 rounded-md">
-        <label
-          className="text-sm font-normal absolute bg-white top-[-11px] left-4"
-          htmlFor="text"
-        >
-          Text
-        </label>
-        <textarea
-          className="w-full h-full rounded-md outline-none resize-none   p-4"
-          id="text"
-          ref={textarea}
-          required
-        ></textarea>
-      </div>
-      <button
-        className="w-48 bg-black rounded-md text-white h-9 "
-        type="submit"
-        onClick={onClickHandel}
-      >
-        SUBMIT
-      </button>
+          SUBMIT
+        </button>
+      </form>
       <div
         className="bg-[#7eabf9] p-2 rounded-2xl mt-2 absolute top-1/3 left-1/2 transform -translate-x-1/3 translate-y-1/2 h-20 w-2/5 gap-10 hidden"
         ref={dialog}
